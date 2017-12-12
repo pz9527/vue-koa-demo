@@ -95,20 +95,10 @@ import jwt from 'jsonwebtoken'
       }
     },
     created(){
-      let decode=this.getUserInfo()
-        this.form.user_id=decode.id
+        this.form.user_id=this.$store.state.id
     },
     methods:
       {
-        getUserInfo(){
-          const token = sessionStorage.getItem('demo-token');
-          if(token != null && token != 'null'){
-            let decode = jwt.verify(token,'vue-koa-demo');
-            return decode
-          }else {
-            return null
-          }
-        },
         onSubmit(form) {
 
           this.$http.post('/api/todolist', this.form)

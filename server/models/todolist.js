@@ -4,14 +4,22 @@ const TodolistDb = db.Todolist // 引入数据库
 const format = require('date-fns/format');
 const Todolist = TodolistDb.import(todoModel)
 
-const getTodolistById = async function (status) {
+const getTodolistById = async function (id) {
   const todolist = await Todolist.findAll({ // 查找全部的todolist
     where:{
-      status:status
+      user_id:id
     },
     order: "id DESC",
-    limit : 200,
-    attributes: ['id', 'content', 'status','name','number','diningform','date','department'] //
+  })
+
+  return todolist // 返回数据
+}
+const getTodolistByStatus = async function (status) {
+  const todolist = await Todolist.findAll({ // 查找全部的todolist
+    where:{
+      status
+    },
+    order: "id DESC",
   })
 
   return todolist // 返回数据
@@ -56,6 +64,7 @@ const updateTodolist = async function (id, status) {
 
 export default {
   getTodolistById,
+  getTodolistByStatus,
   createTodolist,
   removeTodolist,
   updateTodolist

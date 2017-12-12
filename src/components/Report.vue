@@ -11,15 +11,12 @@
 
         <el-table-column prop="diningform" label="就餐形式" width="100">
         </el-table-column>
-        <!--<el-table-column prop="status" label="status" width="100">-->
-        <!--</el-table-column>-->
-        <!--<el-table-column prop="id" label="id" width="100">-->
-        <!--</el-table-column>-->
         <el-table-column prop="number" label="就餐人数" width="100">
         </el-table-column>
-        <el-table-column prop="content" label="留言" width="200">
+        <el-table-column prop="content" label="留言" width="400">
         </el-table-column>
-
+        <el-table-column prop="status" label="流程" width="160">
+        </el-table-column>
       </el-table>
     </div>
 
@@ -48,17 +45,9 @@
       }
     },
     beforeCreate:function () {
-      const token = sessionStorage.getItem('demo-token');
-      if(token == null || token == 'null'){
-        return null
 
-      }else {
-        let decode = jwt.verify(token, 'vue-koa-demo');
-        console.log(decode)
-        this.id = decode.id;
-        this.name = decode.name;
-        if(this.name!='admin')return
-        this.$http.get('/api/todolist/1')
+        if(this.$store.state.role=='1'){
+        this.$http.get('/api/todolist?status=1')
           .then((res) => {
             if (res.status == 200) {
               this.tableData = res.data
@@ -70,7 +59,20 @@
             this.$message.error('获取列表失败！')
             console.log(err)
           })
-      }
+        }else {
+          this.$http.get('/api/todolist/'+this.$store.state.id)
+            .then((res) => {
+              if (res.status == 200) {
+                this.tableData = res.data
+                console.log(res.data)
+              } else {
+                this.$message.error('获取列表失败！')
+              }
+            }, (err) => {
+              this.$message.error('获取列表失败！')
+              console.log(err)
+            })
+        }
     },
     methods: {
       handleEdit(index, row){

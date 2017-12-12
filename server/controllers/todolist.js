@@ -1,8 +1,13 @@
 import todolist from '../models/todolist.js'
 
-const getTodolist = async function (ctx) {
-  const status = ctx.params.status // 获取url里传过来的参数里的id
-  const result = await todolist.getTodolistById(status) // 通过await “同步”地返回查询结果
+const getTodolistByStatus = async function (ctx) {
+  const status = ctx.query.status // 获取url里传过来的参数里的id
+  const result = await todolist.getTodolistByStatus(status) // 通过await “同步”地返回查询结果
+  ctx.body = result // 将请求的结果放到response的body里返回
+}
+const getTodolistById = async function (ctx) {
+  const id = ctx.params.id// 获取url里传过来的参数里的id
+  const result = await todolist.getTodolistById(id) // 通过await “同步”地返回查询结果
   ctx.body = result // 将请求的结果放到response的body里返回
 }
 
@@ -36,7 +41,8 @@ const updateTodolist = async function (ctx) {
 }
 
 export default {
-  getTodolist,
+  getTodolistByStatus,
+  getTodolistById,
   createTodolist,
   removeTodolist,
   updateTodolist

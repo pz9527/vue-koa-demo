@@ -10,7 +10,7 @@
         </el-menu-item-group>
       </el-submenu>
       <el-menu-item index="/Home/BaseTable"><i class="el-icon-message"></i>管理员</el-menu-item>
-      <el-menu-item index="/home/BaseTable1"><i class="el-icon-edit"></i>报表统计</el-menu-item>
+      <el-menu-item index="/home/Report"><i class="el-icon-edit"></i>报表统计</el-menu-item>
     </el-menu>
   </div>
 </template>

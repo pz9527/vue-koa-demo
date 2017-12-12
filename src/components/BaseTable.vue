@@ -57,9 +57,8 @@
       }
     },
     beforeCreate:function () {
-
         if(this.$store.state.role!='1')return
-        this.$http.get('/api/todolist/0')
+        this.$http.get('/api/todolist?status=0')
           .then((res) => {
             if (res.status == 200) {
               this.tableData = res.data

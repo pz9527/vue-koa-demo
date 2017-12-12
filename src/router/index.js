@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
 import BaseTabel from '../components/BaseTable.vue'
-import BaseTabel1 from '../components/BaseTable1.vue'
+import Report from '../components/Report.vue'
 import Ordering from '../components/Ordering.vue'
 
 Vue.use(Router);
@@ -25,8 +25,8 @@ export default new Router({
           component:BaseTabel
         },
         {
-          path:'/Home/BaseTable1',
-          component:BaseTabel1
+          path:'/Home/Report',
+          component:Report
         }
 
       ]
