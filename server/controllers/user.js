@@ -22,7 +22,9 @@ const postUserAuth = async function (ctx) {
     } else {
       const userToken = {
         name: userInfo.user_name,
-        id: userInfo.id
+        id: userInfo.id,
+        dept:userInfo.deptId,
+        role:userInfo.roleId,
       }
       const secret = 'vue-koa-demo' // 指定密钥
       const token = jwt.sign(userToken, secret) // 签发token

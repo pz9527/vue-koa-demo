@@ -20,6 +20,7 @@
 <script type="text/ecmascript-6">
   import header from  '../components/common/header.vue'
   import leftMenu from '../components/common/leftMenu.vue'
+  import jwt from 'jsonwebtoken'
   export default{
     data(){
       return {
@@ -29,6 +30,14 @@
     components: {
       'v-header': header,
       'v-menu': leftMenu
+    },
+    created(){
+      let token=sessionStorage.getItem('demo-token')
+      if(token){
+        let decoded=jwt.decode(token,'vue-koa-demo');
+        console.log(decoded)
+        this.$store.commit('setUserInfo',decoded)
+      }
     }
   }
 

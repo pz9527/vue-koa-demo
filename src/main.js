@@ -6,7 +6,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import router from './router'
 import Axios from 'axios'
-
+import store from './store'
 Vue.prototype.$http = Axios // 类似于vue-resource的调用方法
 
 Vue.use(ElementUI);
@@ -36,6 +36,7 @@ router.beforeEach((to,from,next) =>{
 
 /* eslint-disable no-new */
 const app = new Vue({
-  router: router,
+  router,
+  store,
   render: h => h(App)
 }).$mount('#app')

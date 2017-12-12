@@ -57,21 +57,12 @@
       }
     },
     beforeCreate:function () {
-      const token = sessionStorage.getItem('demo-token');
-      if(token == null || token == 'null'){
-        return null
 
-      }else {
-        let decode = jwt.verify(token, 'vue-koa-demo');
-        console.log(decode)
-        this.id = decode.id;
-        this.name = decode.name;
-        if(this.name!='admin')return
+        if(this.$store.state.role!='1')return
         this.$http.get('/api/todolist/0')
           .then((res) => {
             if (res.status == 200) {
               this.tableData = res.data
-              console.log(res.data)
             } else {
               this.$message.error('获取列表失败！')
             }
@@ -79,7 +70,6 @@
             this.$message.error('获取列表失败！')
             console.log(err)
           })
-      }
     },
     methods: {
       handleEdit(index, row){

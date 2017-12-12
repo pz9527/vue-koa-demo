@@ -23,6 +23,9 @@
         activeIndex: '1',
       }
     },
+    created(){
+
+    },
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
